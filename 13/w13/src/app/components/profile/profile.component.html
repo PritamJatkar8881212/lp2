@@ -1,0 +1,22 @@
+<div class="profile-container" *ngIf="user">
+  <h2>Profile</h2>
+  <div class="profile-info">
+    <div class="info-group">
+      <label>Username:</label>
+      <span>{{ user.username }}</span>
+    </div>
+    <div class="info-group">
+      <label>Email:</label>
+      <span>{{ user.email }}</span>
+    </div>
+    <div class="info-group" *ngIf="user.firstName">
+      <label>First Name:</label>
+      <span>{{ user.firstName }}</span>
+    </div>
+    <div class="info-group" *ngIf="user.lastName">
+      <label>Last Name:</label>
+      <span>{{ user.lastName }}</span>
+    </div>
+  </div>
+  <button (click)="logout()">Logout</button>
+</div>
