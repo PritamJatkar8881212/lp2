@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PICT - Mobile Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQuery Mobile and jQuery CDN -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Home Page -->
+    <div data-role="page" id="home" data-theme="b">
+
+        <div data-role="header">
+            <h1>PICT</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" class="ui-btn-active">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#departments">Departments</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="content">
+            <h2>Welcome to PICT</h2>
+            <p>Pune Institute of Computer Technology is a premier institute for engineering education in Pune,
+                Maharashtra. We focus on quality education, innovation, and excellence in technology.</p>
+        </div>
+
+    </div>
+
+    <!-- About Us Page -->
+    <div data-role="page" id="about" data-theme="a" data-transition="slide">
+
+        <div data-role="header">
+            <h1>About PICT</h1>
+            <a href="#home" data-icon="home">Home</a>
+        </div>
+
+        <div data-role="content">
+            <h2>About Us</h2>
+            <p>Founded in 1983, PICT is renowned for academic excellence and industry-oriented education. Our campus is
+                equipped with modern infrastructure and experienced faculty.</p>
+        </div>
+
+    </div>
+
+    <!-- Courses Page -->
+    <div data-role="page" id="courses" data-theme="a" data-transition="slide">
+
+        <div data-role="header">
+            <h1>Courses Offered</h1>
+            <a href="#home" data-icon="home">Home</a>
+        </div>
+
+        <div data-role="content">
+            <h2>Undergraduate Courses</h2>
+            <div data-role="collapsible-set">
+                <div data-role="collapsible">
+                    <h4>Computer Engineering</h4>
+                    <p>Focus on data structures, algorithms, systems programming, and software engineering.</p>
+                </div>
+                <div data-role="collapsible">
+                    <h4>Information Technology</h4>
+                    <p>Covers web technologies, cybersecurity, mobile computing, and data analytics.</p>
+                </div>
+                <div data-role="collapsible">
+                    <h4>Electronics & Telecommunication</h4>
+                    <p>Core electronics, signal processing, and wireless communication systems.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Departments Page -->
+    <div data-role="page" id="departments" data-theme="a" data-transition="slide">
+
+        <div data-role="header">
+            <h1>Departments</h1>
+            <a href="#home" data-icon="home">Home</a>
+        </div>
+
+        <div data-role="content">
+            <h2>Our Departments</h2>
+            <ul data-role="listview" data-inset="true">
+                <li>Computer Engineering</li>
+                <li>Information Technology</li>
+                <li>Electronics & Telecommunication</li>
+                <li>Applied Sciences</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Contact Page -->
+    <div data-role="page" id="contact" data-theme="a" data-transition="slide">
+
+        <div data-role="header">
+            <h1>Contact Us</h1>
+            <a href="#home" data-icon="home">Home</a>
+        </div>
+
+        <div data-role="content">
+            <h2>Contact Information</h2>
+            <p><strong>Address:</strong><br>
+                Pune Institute of Computer Technology,<br>
+                Dhankawadi, Pune - 411043, Maharashtra, India</p>
+            <p><strong>Phone:</strong> +91-20-24371101</p>
+            <p><strong>Email:</strong> contact@pict.edu</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

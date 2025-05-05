@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Local Image Product Catalog</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        img {
+            width: 60px;
+        }
+
+        .pagination {
+            text-align: center;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+
+        @media (max-width: 600px) {
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            td {
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td::before {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-weight: bold;
+            }
+
+            td:nth-child(1)::before {
+                content: "Image";
+            }
+
+            td:nth-child(2)::before {
+                content: "Name";
+            }
+
+            td:nth-child(3)::before {
+                content: "Price";
+            }
+
+            td:nth-child(4)::before {
+                content: "Description";
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Product Catalog</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody id="productBody"></tbody>
+    </table>
+    <div class="pagination" id="pagination"></div>
+
+    <script>
+        const imageNames = ['images/img1.jpg', 'images/img2.jpg', 'images/img3.jpg', 'images/img4.jpg'];
+
+        const products = Array.from({ length: 25 }, (_, i) => ({
+            image: imageNames[i % 4], // Cycle through img1 to img4
+            name: `Product ${i + 1}`,
+            price: `$${10 + i}`,
+            description: `Description for product ${i + 1}`
+        }));
+
+        const perPage = 10;
+        let currentPage = 1;
+
+        function showPage(page) {
+            const start = (page - 1) * perPage;
+            const end = start + perPage;
+            const tbody = document.getElementById("productBody");
+            tbody.innerHTML = "";
+            products.slice(start, end).forEach(p => {
+                tbody.innerHTML += `
+          <tr>
+            <td><img src="${p.image}" alt="Product Image"></td>
+            <td>${p.name}</td>
+            <td>${p.price}</td>
+            <td>${p.description}</td>
+          </tr>`;
+            });
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(products.length / perPage);
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+            for (let i = 1; i <= totalPages; i++) {
+                pagination.innerHTML += `<button onclick="goToPage(${i})">${i}</button>`;
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            showPage(currentPage);
+        }
+
+        showPage(currentPage);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Weather App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #83a4d4, #b6fbff);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h3>🌤️ Weather Checker</h3>
+        <input type="text" id="cityInput" placeholder="Enter city name..." />
+        <button onclick="getWeather()">Get Weather</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const weatherData = {
+            "mumbai": { temp: "32°C", humidity: "70%", condition: "Sunny" },
+            "delhi": { temp: "35°C", humidity: "40%", condition: "Clear" },
+            "pune": { temp: "28°C", humidity: "60%", condition: "Cloudy" },
+            "goa": { temp: "30°C", humidity: "75%", condition: "Rainy" },
+            "chennai": { temp: "34°C", humidity: "65%", condition: "Hot" }
+        };
+
+        function getWeather() {
+            const city = document.getElementById('cityInput').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+
+            resultDiv.innerHTML = "Loading...";
+
+            setTimeout(() => {
+                if (weatherData[city]) {
+                    const { temp, humidity, condition } = weatherData[city];
+                    resultDiv.innerHTML = `
+          <strong>City:</strong> ${city.charAt(0).toUpperCase() + city.slice(1)}<br>
+          <strong>Temperature:</strong> ${temp}<br>
+          <strong>Humidity:</strong> ${humidity}<br>
+          <strong>Condition:</strong> ${condition}
+        `;
+                } else {
+                    resultDiv.innerHTML = "<span style='color: red;'>City not found in local data.</span>";
+                }
+            }, 500);
+        }
+    </script>
+
+</body>
+
+</html>

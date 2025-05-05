@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Amit Sharma",
+        "designation": "Software Engineer",
+        "department": "Engineering",
+        "salary": 50000,
+        "image": ""
+    },
+    {
+        "name": "Priya Desai",
+        "designation": "Project Manager",
+        "department": "Management",
+        "salary": 75000,
+        "image": ""
+    },
+    {
+        "name": "Ravi Kumar",
+        "designation": "UX Designer",
+        "department": "Design",
+        "salary": 60000,
+        "image": ""
+    },
+    {
+        "name": "Neha Gupta",
+        "designation": "QA Engineer",
+        "department": "Engineering",
+        "salary": 55000,
+        "image": ""
+    },
+    {
+        "name": "Vikram Singh",
+        "designation": "Data Scientist",
+        "department": "Data Science",
+        "salary": 70000,
+        "image": ""
+    }
+]

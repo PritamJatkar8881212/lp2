@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX To-Do List with Edit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            margin-left: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .edit {
+            background: orange;
+            color: white;
+        }
+
+        .delete {
+            background: red;
+            color: white;
+        }
+
+        .save {
+            background: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>AJAX To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        const apiUrl = 'http://localhost:3000/todos';
+
+        function loadTasks() {
+            fetch(apiUrl)
+                .then(res => res.json())
+                .then(tasks => {
+                    const taskList = document.getElementById('taskList');
+                    taskList.innerHTML = '';
+                    tasks.forEach(task => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+              <span contenteditable="false" id="task-text-${task.id}">${task.text}</span>
+              <span>
+                <button class="btn edit" onclick="enableEdit(${task.id})">Edit</button>
+                <button class="btn save" onclick="saveEdit(${task.id})">Save</button>
+                <button class="btn delete" onclick="deleteTask(${task.id})">Delete</button>
+              </span>
+            `;
+                        taskList.appendChild(li);
+                    });
+                })
+                .catch(err => console.error('Error loading tasks:', err));
+        }
+
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const text = taskInput.value.trim();
+            if (!text) return alert('Enter something!');
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text })
+            })
+                .then(() => {
+                    taskInput.value = '';
+                    loadTasks();
+                })
+                .catch(err => console.error('Error adding task:', err));
+        }
+
+        function deleteTask(id) {
+            fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
+                .then(() => loadTasks())
+                .catch(err => console.error('Error deleting task:', err));
+        }
+
+        function enableEdit(id) {
+            const textSpan = document.getElementById(`task-text-${id}`);
+            textSpan.contentEditable = true;
+            textSpan.focus();
+        }
+
+        function saveEdit(id) {
+            const textSpan = document.getElementById(`task-text-${id}`);
+            const newText = textSpan.innerText.trim();
+            if (!newText) return alert('Cannot save empty task!');
+            fetch(`${apiUrl}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: newText })
+            })
+                .then(() => {
+                    textSpan.contentEditable = false;
+                    loadTasks();
+                })
+                .catch(err => console.error('Error updating task:', err));
+        }
+
+        // Initial load
+        loadTasks();
+    </script>
+</body>
+
+</html>

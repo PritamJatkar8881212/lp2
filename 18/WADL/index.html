@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Music Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>🎶 Music Library</h2>
+
+    <div>
+        <form id="addForm">
+            <input type="text" name="Songname" placeholder="Song Name" required>
+            <input type="text" name="Film" placeholder="Film" required>
+            <input type="text" name="Music_director" placeholder="Director" required>
+            <input type="text" name="Singer" placeholder="Singer" required>
+            <button type="submit">Add Song</button>
+        </form>
+    </div>
+
+    <p id="count"></p>
+    <table id="songsTable">
+        <thead>
+            <tr>
+                <th>Song</th>
+                <th>Film</th>
+                <th>Director</th>
+                <th>Singer</th>
+                <th>Actor</th>
+                <th>Actress</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

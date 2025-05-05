@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Marks Dashboard</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Student Marks Dashboard</h1>
+
+    <div>
+        <button onclick="loadStudents()">All Students</button>
+        <button onclick="loadDSBDAAbove20()">DSBDA > 20</button>
+        <button onclick="loadAllAbove25()">All Marks > 25</button>
+        <button onclick="loadWADCCLess40()">WAD & CC < 40</button>
+    </div>
+
+    <h3 id="count">Total Students: </h3>
+
+    <table id="studentsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>WAD</th>
+                <th>CC</th>
+                <th>DSBDA</th>
+                <th>CNS</th>
+                <th>AI</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        function renderStudents(students) {
+            const tbody = document.querySelector("#studentsTable tbody");
+            tbody.innerHTML = "";
+            students.forEach(student => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+          <td>${student.Name}</td>
+          <td>${student.Roll_No}</td>
+          <td>${student.WAD_Marks}</td>
+          <td>${student.CC_Marks}</td>
+          <td>${student.DSBDA_Marks}</td>
+          <td>${student.CNS_Marks}</td>
+          <td>${student.AI_marks}</td>
+          <td>
+            <button onclick="deleteStudent('${student._id}')">❌</button>
+            <button onclick="increaseMarks('${student.Name}')">➕10</button>
+          </td>
+        `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function loadStudents() {
+            fetch('/api/students')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("count").innerText = `Total Students: ${data.count}`;
+                    renderStudents(data.students);
+                })
+                .catch(error => {
+                    console.error("Error loading all students:", error);
+                });
+        }
+
+        function loadDSBDAAbove20() {
+            fetch('/api/students/dsbda/above20')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("count").innerText = `DSBDA > 20: ${data.length} students`;
+                    renderStudents(data);
+                });
+        }
+
+        function loadAllAbove25() {
+            fetch('/api/students/above25all')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("count").innerText = `All Subjects > 25: ${data.length} students`;
+                    renderStudents(data);
+                });
+        }
+
+        function loadWADCCLess40() {
+            fetch('/api/students/less40mathsci')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("count").innerText = `WAD & CC < 40: ${data.length} students`;
+                    renderStudents(data);
+                });
+        }
+
+        function deleteStudent(id) {
+            if (!confirm("Are you sure you want to delete this student?")) return;
+            fetch(`/api/students/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message);
+                    loadStudents();
+                })
+                .catch(error => {
+                    console.error("Error deleting student:", error);
+                    alert("Error deleting student.");
+                });
+        }
+
+        function increaseMarks(name) {
+            fetch(`/api/students/increase/${encodeURIComponent(name)}`, {
+                method: 'PUT'
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Failed to update marks");
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    alert(data.message);
+                    loadStudents();
+                })
+                .catch(error => {
+                    console.error("Error increasing marks:", error);
+                    alert("Error increasing marks.");
+                });
+        }
+
+        // Initial load
+        window.onload = loadStudents;
+    </script>
+</body>
+
+</html>

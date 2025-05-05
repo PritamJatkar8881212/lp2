@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- jQuery & jQuery Mobile CDN -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Home/About Me Page -->
+    <div data-role="page" id="about">
+        <div data-role="header">
+            <h1>About Me</h1>
+        </div>
+
+        <div data-role="content">
+            <p>Hello! I'm Pritam Jatkar, I am a passionate web developer interested in mobile and responsive design.</p>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#about" class="ui-btn-active">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Page -->
+    <div data-role="page" id="projects">
+        <div data-role="header">
+            <h1>Projects</h1>
+        </div>
+
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true">
+                <li>
+                    <h2>Portfolio Website</h2>
+                    <p>Responsive portfolio made with HTML/CSS/JS</p>
+                </li>
+                <li>
+                    <h2>Wanderlust</h2>
+                    <p>Travel Market place website</p>
+                </li>
+                <li>
+                    <h2>HighSeas</h2>
+                    <p>E-commerce website</p>
+                </li>
+            </ul>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects" class="ui-btn-active">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Page -->
+    <div data-role="page" id="skills">
+        <div data-role="header">
+            <h1>Skills</h1>
+        </div>
+
+        <div data-role="content">
+            <div data-role="collapsible-set">
+                <div data-role="collapsible">
+                    <h4>Frontend</h4>
+                    <p>HTML, CSS, JavaScript, React, Bootstrap, Tailwind</p>
+                </div>
+                <div data-role="collapsible">
+                    <h4>Backend</h4>
+                    <p>Node.js, Express.js, MongoDB</p>
+                </div>
+                <div data-role="collapsible">
+                    <h4>Tools</h4>
+                    <p>Git, VS Code, Postman</p>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills" class="ui-btn-active">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Info Page -->
+    <div data-role="page" id="contact">
+        <div data-role="header">
+            <h1>Contact Info</h1>
+        </div>
+
+        <div data-role="content">
+            <p>Email: pritamjatkar1724@gmail.com</p>
+            <p>Phone: +91-1234567890</p>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact" class="ui-btn-active">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

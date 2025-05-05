@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Wireless Mouse",
+        "price": "$15",
+        "image": ""
+    },
+    {
+        "name": "USB Keyboard",
+        "price": "$20",
+        "image": ""
+    },
+    {
+        "name": "Laptop Stand",
+        "price": "$30",
+        "image": ""
+    },
+    {
+        "name": "Headphones",
+        "price": "$25",
+        "image": ""
+    },
+    {
+        "name": "Webcam",
+        "price": "$40",
+        "image": ""
+    },
+    {
+        "name": "Phone Holder",
+        "price": "$10",
+        "image": ""
+    }
+]
